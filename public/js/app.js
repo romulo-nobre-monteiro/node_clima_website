@@ -9,24 +9,22 @@ weatherForm.addEventListener("submit", e => {
   m1.textContent = "loading ...";
   m2.textContent = "";
 
-  fetch("http://localhost:3000/weather/?endereco=" + busca.value).then(
-    response => {
-      response.json().then(data => {
-        if (data.error) {
-          console.log(data.error);
-          m1.textContent = data.error;
-        } else {
-          console.log(data.local);
-          console.log(data.Skydata);
-          m1.textContent = data.local;
-          m2.textContent = data.Skydata;
+  fetch("/weather/?endereco=" + busca.value).then(response => {
+    response.json().then(data => {
+      if (data.error) {
+        console.log(data.error);
+        m1.textContent = data.error;
+      } else {
+        console.log(data.local);
+        console.log(data.Skydata);
+        m1.textContent = data.local;
+        m2.textContent = data.Skydata;
 
-          //   m2.textContent = "";
-          //   for (var inf in data.Skydata) {
-          //     m2.textContent = m2.textContent + " " + data.Skydata[inf] + "  ";
-          //   }
-        }
-      });
-    }
-  );
+        //   m2.textContent = "";
+        //   for (var inf in data.Skydata) {
+        //     m2.textContent = m2.textContent + " " + data.Skydata[inf] + "  ";
+        //   }
+      }
+    });
+  });
 });
